@@ -1,12 +1,13 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import './App.css'
 import SearchIcon from './Search.svg'
+import MovieCard from "./MovieCard";
 
 const API_URL = 'http://www.omdbapi.com/?apikey=5f6d82ca'
 
-const movieEx = {
+const movie = {
     "Title": "Minecraft",
     "Year": "2009",
     "imdbID": "tt2011970",
@@ -15,11 +16,13 @@ const movieEx = {
 }
 
 const App = () => {
+    const [movies, setMovies] = useState([])
+
     const searchMovie = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
 
-        console.log(data.Search)
+        setMovies(data.Search)
     }
 
     useEffect(() => {
@@ -31,26 +34,26 @@ const App = () => {
             <div className="search">
                 <input
                     placeholder="Cari film disini"
-                    value="Minecraft"
+                    value=""
                     onChange={() => { }} />
                 <img src={SearchIcon}
                     alt="search"
                     onClick={() => { }} />
             </div>
-            <div className="container">
-                <div className="movie">
-                    <div>
-                        <p>{movieEx.Year}</p>
-                    </div>
-                    <div>
-                        <img src={movieEx.Poster !== 'N/A' ? movieEx.Poster : 'https://placehold.co/400'} alt={movieEx.Title} />
-                    </div>
-                    <div>
-                        <span>{movieEx.Type}</span>
-                        <h3>{movieEx.Title}</h3>
-                    </div>
-                </div>
-            </div>
+            {
+                movies?.length > 0
+                    ? (
+                        <div className="container">
+                            {movies.map((movie) => (
+                                <MovieCard movie={movie} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="empty">
+                            <h2>Tidak ada film yang ditemukan</h2>
+                        </div>
+                    )
+            }
         </div>
     );
 }

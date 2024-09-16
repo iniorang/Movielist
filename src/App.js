@@ -7,13 +7,13 @@ import MovieCard from "./MovieCard";
 
 const API_URL = 'http://www.omdbapi.com/?apikey=5f6d82ca'
 
-const movie = {
-    "Title": "Minecraft",
-    "Year": "2009",
-    "imdbID": "tt2011970",
-    "Type": "game",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BZTc4ZTQ2YTctZjllYS00ZjUwLWI3NDktYzU5NmU5MTY3ODZjXkEyXkFqcGdeQXVyNjgzMzA5Mzk@._V1_SX300.jpg"
-}
+// const exampleList = {
+//     "Title": "Minecraft",
+//     "Year": "2009",
+//     "imdbID": "tt2011970",
+//     "Type": "game",
+//     "Poster": "https://m.media-amazon.com/images/M/MV5BZTc4ZTQ2YTctZjllYS00ZjUwLWI3NDktYzU5NmU5MTY3ODZjXkEyXkFqcGdeQXVyNjgzMzA5Mzk@._V1_SX300.jpg"
+// }
 
 const App = () => {
     const [movies, setMovies] = useState([])
